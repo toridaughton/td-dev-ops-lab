@@ -26,13 +26,11 @@ app.get('/style', (req, res) => {
     rollbar.info('css file served')
 })
 
-app.get('/', (req, res) => { 
+app.get('/test', (req, res) => { 
     try {
-    nonExistentFunction();
+    whatAreYouEvenTryingTodo();
   } catch (error) {
-    console.error(error);
-    // expected output: ReferenceError: nonExistentFunction is not defined
-    // Note - error messages will vary depending on browser
+    rollbar.error(error);
   }
 })
 
