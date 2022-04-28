@@ -20,10 +20,18 @@ app.get('/', (req, res) => {
 })
 
 
-// app.get('/style', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../styles.css'))
-//     rollbar.info('css file served')
-// })
+try {
+    nonExistentFunction();
+  } catch (error) {
+    console.error(error);
+    // expected output: ReferenceError: nonExistentFunction is not defined
+    // Note - error messages will vary depending on browser
+  }
+
+app.get('/style', (req, res) => {
+    res.sendFile(path.join(__dirname, '../styles.css'))
+    rollbar.info('css file served')
+})
 
 const port = process.env.PORT || 5000
 
