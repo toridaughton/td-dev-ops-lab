@@ -26,7 +26,7 @@ app.get('/style', (req, res) => {
     rollbar.info('css file served')
 })
 
-app.post('/', (req, res) => { 
+app.get('/', (req, res) => { 
     try {
     nonExistentFunction();
   } catch (error) {
