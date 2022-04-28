@@ -12,7 +12,7 @@ const rollbar = new Rollbar({
 })
 
 // record a generic message and send it to Rollbar
-rollbar.log('Hello world!')
+rollbar.log("We've landed!")
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'))
@@ -20,17 +20,20 @@ app.get('/', (req, res) => {
 })
 
 
-try {
+
+app.get('/style', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/styles.css'))
+    rollbar.info('css file served')
+})
+
+app.post('/', (req, res) => { 
+    try {
     nonExistentFunction();
   } catch (error) {
     console.error(error);
     // expected output: ReferenceError: nonExistentFunction is not defined
     // Note - error messages will vary depending on browser
   }
-
-app.get('/style', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/styles.css'))
-    rollbar.info('css file served')
 })
 
 const port = process.env.PORT || 5000
